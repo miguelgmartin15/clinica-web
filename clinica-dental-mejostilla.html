@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clínica Dental La Mejostilla · Cáceres</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F9F5EF;
+    --cream-dark: #EFE9DF;
+    --sage: #8AA897;
+    --sage-dark: #5A7A6A;
+    --sage-light: #C8DDD3;
+    --charcoal: #2A2A28;
+    --mid: #6B6860;
+    --gold: #C9A96E;
+    --white: #FDFCFA;
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'DM Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--cream);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.4rem 5vw;
+    background: rgba(249, 245, 239, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(138, 168, 151, 0.2);
+    transition: padding 0.3s;
+  }
+  .logo {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    font-weight: 300;
+    letter-spacing: 0.03em;
+    color: var(--charcoal);
+    text-decoration: none;
+  }
+  .logo span { color: var(--sage-dark); font-style: italic; }
+  nav ul { list-style: none; display: flex; gap: 2.5rem; }
+  nav ul a {
+    font-size: 0.78rem; font-weight: 400; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--mid);
+    text-decoration: none; transition: color 0.2s;
+  }
+  nav ul a:hover { color: var(--sage-dark); }
+  .nav-cta {
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--white);
+    background: var(--sage-dark); border: none;
+    padding: 0.65rem 1.5rem; cursor: pointer;
+    text-decoration: none; transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--charcoal); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 6vw 5vw 6vw 8vw;
+    position: relative;
+  }
+  .hero-tag {
+    font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--sage-dark); font-weight: 500; margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.7rem;
+  }
+  .hero-tag::before {
+    content: ''; display: block; width: 2rem; height: 1px; background: var(--sage-dark);
+  }
+  h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    font-weight: 300; line-height: 1.1;
+    color: var(--charcoal); margin-bottom: 1.8rem;
+  }
+  h1 em { font-style: italic; color: var(--sage-dark); }
+  .hero-desc {
+    font-size: 1rem; font-weight: 300; color: var(--mid);
+    line-height: 1.75; max-width: 38ch; margin-bottom: 3rem;
+  }
+  .hero-actions { display: flex; gap: 1rem; align-items: center; }
+  .btn-primary {
+    background: var(--sage-dark); color: var(--white);
+    padding: 1rem 2.2rem; font-size: 0.82rem;
+    font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--charcoal); transform: translateY(-1px); }
+  .btn-ghost {
+    color: var(--mid); font-size: 0.82rem; font-weight: 400;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; display: flex; align-items: center; gap: 0.5rem;
+    transition: color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--charcoal); }
+  .btn-ghost::after { content: '→'; font-size: 1rem; }
+
+  .hero-right {
+    position: relative; overflow: hidden;
+    background: var(--cream-dark);
+  }
+  .hero-img-wrap {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(160deg, rgba(138,168,151,0.18) 0%, transparent 60%),
+      url('https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=900&q=80') center/cover no-repeat;
+  }
+  .hero-badge {
+    position: absolute; bottom: 3rem; left: -2rem;
+    background: var(--white); padding: 1.2rem 1.8rem;
+    box-shadow: 0 8px 32px rgba(42,42,40,0.1);
+    border-left: 3px solid var(--sage);
+    max-width: 220px;
+  }
+  .hero-badge-num {
+    font-family: var(--font-serif); font-size: 2.5rem; font-weight: 300;
+    color: var(--sage-dark); line-height: 1;
+  }
+  .hero-badge-text {
+    font-size: 0.78rem; color: var(--mid); line-height: 1.4; margin-top: 0.4rem;
+  }
+
+  /* ── STRIP ── */
+  .strip {
+    background: var(--charcoal); color: var(--sage-light);
+    display: flex; justify-content: center; align-items: center;
+    gap: 4rem; padding: 1.4rem 5vw; overflow: hidden;
+    flex-wrap: wrap;
+  }
+  .strip-item {
+    font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+    display: flex; align-items: center; gap: 0.6rem; white-space: nowrap;
+  }
+  .strip-dot { width: 5px; height: 5px; background: var(--sage); border-radius: 50%; }
+
+  /* ── SERVICES ── */
+  .section { padding: 8rem 8vw; }
+  .section-label {
+    font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--sage-dark); margin-bottom: 1rem; font-weight: 500;
+  }
+  h2 {
+    font-family: var(--font-serif); font-size: clamp(2rem, 3.5vw, 3.2rem);
+    font-weight: 300; line-height: 1.15; margin-bottom: 1.5rem;
+  }
+  h2 em { font-style: italic; color: var(--sage-dark); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5px;
+    margin-top: 4rem;
+    background: var(--cream-dark);
+    border: 1.5px solid var(--cream-dark);
+  }
+  .service-card {
+    background: var(--white); padding: 2.5rem 2rem;
+    transition: background 0.3s;
+    cursor: default;
+    position: relative; overflow: hidden;
+  }
+  .service-card:hover { background: var(--cream); }
+  .service-card::after {
+    content: ''; position: absolute; bottom: 0; left: 0;
+    width: 0; height: 2px; background: var(--sage);
+    transition: width 0.4s ease;
+  }
+  .service-card:hover::after { width: 100%; }
+  .service-icon {
+    width: 48px; height: 48px; margin-bottom: 1.5rem;
+    color: var(--sage-dark);
+  }
+  .service-icon svg { width: 100%; height: 100%; stroke: currentColor; fill: none; stroke-width: 1.2; }
+  .service-card h3 {
+    font-family: var(--font-serif); font-size: 1.4rem; font-weight: 400;
+    margin-bottom: 0.8rem; color: var(--charcoal);
+  }
+  .service-card p { font-size: 0.88rem; color: var(--mid); line-height: 1.7; }
+
+  /* ── WHY US ── */
+  .why {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+    background: var(--cream-dark);
+  }
+  .why-img {
+    min-height: 560px;
+    background: url('https://images.unsplash.com/photo-1588776814546-1ffbb45fc0ab?w=800&q=80') center/cover no-repeat;
+  }
+  .why-content {
+    padding: 6rem 5vw 6rem 6vw;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .why-points { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1.8rem; }
+  .why-point { display: flex; gap: 1.2rem; align-items: flex-start; }
+  .why-num {
+    font-family: var(--font-serif); font-size: 1.5rem; font-weight: 300;
+    color: var(--sage); line-height: 1; min-width: 2rem; padding-top: 2px;
+  }
+  .why-point h4 {
+    font-family: var(--font-serif); font-size: 1.1rem; font-weight: 400;
+    margin-bottom: 0.3rem;
+  }
+  .why-point p { font-size: 0.85rem; color: var(--mid); line-height: 1.65; }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials { padding: 8rem 8vw; }
+  .reviews-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem; margin-top: 4rem;
+  }
+  .review {
+    background: var(--white); padding: 2rem;
+    border: 1px solid var(--cream-dark);
+    position: relative;
+  }
+  .review-quote {
+    font-family: var(--font-serif); font-size: 3rem;
+    color: var(--sage-light); line-height: 0.5;
+    margin-bottom: 1rem; display: block;
+  }
+  .review p {
+    font-size: 0.9rem; line-height: 1.75; color: var(--mid);
+    font-style: italic; margin-bottom: 1.5rem;
+  }
+  .review-author {
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--charcoal);
+  }
+  .stars { color: var(--gold); font-size: 0.8rem; margin-bottom: 0.8rem; }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: var(--charcoal); color: var(--cream);
+    padding: 7rem 8vw; text-align: center;
+  }
+  .cta-section h2 { color: var(--white); }
+  .cta-section h2 em { color: var(--sage-light); }
+  .cta-section p { color: rgba(249,245,239,0.6); max-width: 46ch; margin: 1.2rem auto 3rem; font-size: 1rem; line-height: 1.7; }
+  .btn-light {
+    background: var(--cream); color: var(--charcoal);
+    padding: 1rem 2.5rem; font-size: 0.82rem;
+    font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; display: inline-block;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-light:hover { background: var(--white); transform: translateY(-1px); }
+
+  /* ── CONTACT ── */
+  .contact-section {
+    display: grid; grid-template-columns: 1fr 1fr; min-height: 500px;
+  }
+  .contact-info {
+    background: var(--sage-dark); color: var(--white);
+    padding: 6rem 5vw;
+  }
+  .contact-info .section-label { color: var(--sage-light); }
+  .contact-info h2 { color: var(--white); }
+  .contact-info h2 em { color: var(--sage-light); }
+  .contact-details { margin-top: 3rem; display: flex; flex-direction: column; gap: 1.5rem; }
+  .contact-item { display: flex; gap: 1rem; align-items: flex-start; }
+  .contact-item-icon {
+    width: 20px; height: 20px; opacity: 0.7; flex-shrink: 0; margin-top: 2px;
+  }
+  .contact-item-icon svg { width: 100%; height: 100%; stroke: currentColor; fill: none; stroke-width: 1.5; }
+  .contact-item p { font-size: 0.9rem; line-height: 1.6; opacity: 0.85; }
+  .contact-item strong { display: block; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.55; margin-bottom: 0.2rem; }
+
+  .contact-form-wrap {
+    background: var(--white); padding: 5rem 5vw;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .form-title {
+    font-family: var(--font-serif); font-size: 1.6rem; font-weight: 300;
+    margin-bottom: 2rem; color: var(--charcoal);
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+  .form-group label {
+    font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--mid); font-weight: 500;
+  }
+  .form-group input, .form-group select, .form-group textarea {
+    background: var(--cream); border: 1px solid var(--cream-dark);
+    padding: 0.8rem 1rem; font-family: var(--font-sans); font-size: 0.9rem;
+    color: var(--charcoal); outline: none; transition: border-color 0.2s;
+    width: 100%;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color: var(--sage);
+  }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+  .form-submit {
+    background: var(--sage-dark); color: var(--white); border: none;
+    padding: 1rem 2rem; font-family: var(--font-sans); font-size: 0.82rem;
+    font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+    cursor: pointer; transition: background 0.2s; align-self: flex-start; margin-top: 0.5rem;
+  }
+  .form-submit:hover { background: var(--charcoal); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--charcoal); color: rgba(249,245,239,0.4);
+    padding: 2rem 8vw; display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  footer .logo { color: rgba(249,245,239,0.5); font-size: 1.1rem; }
+  footer p { font-size: 0.78rem; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-left > * {
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards;
+  }
+  .hero-left > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-left > *:nth-child(2) { animation-delay: 0.25s; }
+  .hero-left > *:nth-child(3) { animation-delay: 0.4s; }
+  .hero-left > *:nth-child(4) { animation-delay: 0.55s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { min-height: 320px; }
+    .hero-badge { display: none; }
+    .why { grid-template-columns: 1fr; }
+    .why-img { min-height: 260px; }
+    .contact-section { grid-template-columns: 1fr; }
+    nav ul { display: none; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">Dental <span>La Mejostilla</span></a>
+  <ul>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#opiniones">Opiniones</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a href="#contacto" class="nav-cta">Pedir cita</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Dentista en Cáceres</div>
+    <h1>Tu sonrisa,<br>nuestro <em>arte</em></h1>
+    <p class="hero-desc">Clínica dental en el barrio de La Mejostilla. Tratamientos personalizados con tecnología de vanguardia y el trato cercano que mereces.</p>
+    <div class="hero-actions">
+      <a href="#contacto" class="btn-primary">Reservar cita</a>
+      <a href="#servicios" class="btn-ghost">Ver servicios</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-img-wrap"></div>
+    <div class="hero-badge">
+      <div class="hero-badge-num">+15</div>
+      <div class="hero-badge-text">años cuidando sonrisas en Cáceres</div>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-item"><span class="strip-dot"></span>Lunes – Viernes: 9:00 – 20:00</div>
+  <div class="strip-item"><span class="strip-dot"></span>Urgencias: 924 000 000</div>
+  <div class="strip-item"><span class="strip-dot"></span>Sin listas de espera</div>
+  <div class="strip-item"><span class="strip-dot"></span>Financiación sin intereses</div>
+</div>
+
+<!-- SERVICES -->
+<section class="section" id="servicios">
+  <div class="section-label">Nuestros tratamientos</div>
+  <h2>Todo lo que tu boca<br><em>necesita</em></h2>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 48 48"><path d="M24 6C16 6 10 12 10 20c0 5 2 9 5 12l3 10h12l3-10c3-3 5-7 5-12 0-8-6-14-14-14z"/><path d="M18 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg>
+      </div>
+      <h3>Ortodoncia</h3>
+      <p>Brackets metálicos, estéticos e invisibles. Corrección de maloclusiones para todas las edades con un resultado duradero y natural.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 48 48"><rect x="10" y="16" width="28" height="20" rx="3"/><path d="M17 16v-4a7 7 0 0 1 14 0v4"/><circle cx="24" cy="26" r="3"/></svg>
+      </div>
+      <h3>Implantes</h3>
+      <p>Recupera dientes perdidos con implantes de titanio de última generación. Resultados con aspecto completamente natural.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="14"/><path d="M16 24s2 6 8 6 8-6 8-6"/><circle cx="19" cy="20" r="1.5" fill="currentColor"/><circle cx="29" cy="20" r="1.5" fill="currentColor"/></svg>
+      </div>
+      <h3>Estética Dental</h3>
+      <p>Blanqueamiento, carillas de porcelana y diseño de sonrisa. Transformamos tu imagen con tratamientos mínimamente invasivos.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 48 48"><path d="M12 14h24M12 24h24M12 34h16"/><circle cx="38" cy="34" r="6"/><path d="M35 34h6M38 31v6"/></svg>
+      </div>
+      <h3>Periodoncia</h3>
+      <p>Tratamiento de encías y prevención de periodontitis. Mantenemos la base sana para que tus dientes duren toda la vida.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 48 48"><path d="M10 24C10 15.2 15.2 10 24 10s14 5.2 14 14c0 5-2.5 9.5-6.5 12.2L29 38H19l-2.5-1.8C12.5 33.5 10 29 10 24z"/></svg>
+      </div>
+      <h3>Odontopediatría</h3>
+      <p>Los más pequeños también merecen la mejor atención. Revisiones, selladores y flúor en un ambiente cercano y sin miedo.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 48 48"><path d="M8 24L24 8l16 16"/><path d="M12 20v18a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V20"/><path d="M20 40V28h8v12"/></svg>
+      </div>
+      <h3>Revisiones y Prevención</h3>
+      <p>Chequeos completos con radiografías digitales y limpieza profesional. Detectamos problemas antes de que sean costosos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why" id="nosotros">
+  <div class="why-img"></div>
+  <div class="why-content">
+    <div class="section-label">Por qué elegirnos</div>
+    <h2>Calidad humana y<br><em>tecnología</em> de vanguardia</h2>
+    <div class="why-points">
+      <div class="why-point">
+        <div class="why-num">01</div>
+        <div>
+          <h4>Equipo con más de 15 años de experiencia</h4>
+          <p>Nuestros profesionales se forman continuamente para ofrecerte los tratamientos más actuales y seguros.</p>
+        </div>
+      </div>
+      <div class="why-point">
+        <div class="why-num">02</div>
+        <div>
+          <h4>Tecnología digital de última generación</h4>
+          <p>Escáner intraoral 3D, radiología digital de baja radiación y sistemas CAD/CAM para prótesis en el día.</p>
+        </div>
+      </div>
+      <div class="why-point">
+        <div class="why-num">03</div>
+        <div>
+          <h4>Trato cercano y personalizado</h4>
+          <p>Cada paciente es único. Escuchamos tus necesidades y diseñamos un plan de tratamiento hecho a tu medida.</p>
+        </div>
+      </div>
+      <div class="why-point">
+        <div class="why-num">04</div>
+        <div>
+          <h4>Precios transparentes y financiación</h4>
+          <p>Sin sorpresas. Presupuesto detallado antes de empezar y opciones de pago flexible sin intereses.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="opiniones">
+  <div class="section-label">Opiniones de pacientes</div>
+  <h2>Lo que dicen quienes<br><em>nos conocen</em></h2>
+
+  <div class="reviews-grid">
+    <div class="review">
+      <span class="review-quote">"</span>
+      <div class="stars">★★★★★</div>
+      <p>Llevaba años con miedo al dentista. Aquí me trataron con una paciencia y amabilidad que no había encontrado en ningún otro sitio. El resultado de mi ortodoncia es espectacular.</p>
+      <div class="review-author">María G. · Cáceres</div>
+    </div>
+    <div class="review">
+      <span class="review-quote">"</span>
+      <div class="stars">★★★★★</div>
+      <p>Me pusieron dos implantes y el proceso fue mucho más sencillo de lo que esperaba. El equipo es muy profesional y siempre resuelven todas las dudas. Totalmente recomendable.</p>
+      <div class="review-author">Antonio R. · Cáceres</div>
+    </div>
+    <div class="review">
+      <span class="review-quote">"</span>
+      <div class="stars">★★★★★</div>
+      <p>Llevan a mis hijos desde pequeños y siempre van encantados. Saben cómo tratar a los niños para que no tengan miedo. La clínica es moderna y muy limpia. Nuestra clínica de confianza.</p>
+      <div class="review-author">Laura M. · Cáceres</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="section-label" style="color: var(--sage-light);">Primera visita sin compromiso</div>
+  <h2>¿Listo para mejorar<br><em>tu sonrisa</em>?</h2>
+  <p>Pide tu primera revisión gratuita y descubre el tratamiento que más se adapta a ti. Sin esperas, sin sorpresas.</p>
+  <a href="#contacto" class="btn-light">Reservar cita ahora</a>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contacto">
+  <div class="contact-info">
+    <div class="section-label">Dónde estamos</div>
+    <h2>Visítanos en<br><em>La Mejostilla</em></h2>
+
+    <div class="contact-details">
+      <div class="contact-item">
+        <div class="contact-item-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        </div>
+        <p><strong>Dirección</strong>Calle Ejemplo, 12 · Barrio La Mejostilla<br>10002 Cáceres</p>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.81 19a19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 3.09 4.18 2 2 0 0 1 5.06 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L9.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <p><strong>Teléfono</strong>924 000 000<br><small style="opacity:0.6; font-size:0.8rem">Urgencias disponibles</small></p>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <p><strong>Horario</strong>Lun – Vie: 9:00 – 20:00<br>Sábado: 9:00 – 14:00</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-form-wrap">
+    <div class="form-title">Solicitar cita previa</div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Nombre</label>
+        <input type="text" placeholder="Tu nombre">
+      </div>
+      <div class="form-group">
+        <label>Teléfono</label>
+        <input type="tel" placeholder="600 000 000">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Tratamiento de interés</label>
+      <select>
+        <option value="">Selecciona un servicio</option>
+        <option>Ortodoncia</option>
+        <option>Implantes</option>
+        <option>Estética dental</option>
+        <option>Periodoncia</option>
+        <option>Odontopediatría</option>
+        <option>Revisión general</option>
+        <option>Urgencia</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Mensaje (opcional)</label>
+      <textarea placeholder="Cuéntanos qué necesitas..."></textarea>
+    </div>
+    <button class="form-submit">Enviar solicitud</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="logo">Dental <span>La Mejostilla</span></a>
+  <p>© 2025 Clínica Dental La Mejostilla · Cáceres</p>
+  <p style="font-size:0.72rem;">Aviso legal · Política de privacidad</p>
+</footer>
+
+<script>
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    nav.style.boxShadow = window.scrollY > 20 ? '0 2px 20px rgba(42,42,40,0.08)' : 'none';
+  });
+</script>
+
+</body>
+</html>
